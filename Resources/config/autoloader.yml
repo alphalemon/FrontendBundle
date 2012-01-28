@@ -1,0 +1,7 @@
+Frontend:
+  namespace:
+    0:
+      alias: FrontendCore
+      path: /../vendor/bundles/AlphaLemon/FrontendBundle/src
+  bundle: 
+    class: AlphaLemon\FrontendBundle\AlphaLemonFrontendBundle
