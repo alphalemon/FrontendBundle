@@ -1,0 +1,21 @@
+{
+  "name": "alphalemon/frontendbundle",
+  "description": "FrontendBundle provides a Frontend environment for an AlphaLemon CMS websites",
+  "keywords": ["alphalemoncms", "cms"],
+  "homepage": "http://alphalemon.com",
+  "type": "symfony-bundle",
+  "license": "GPL 2.0",
+  "authors": [
+    {
+      "name": "AlphaLemon",
+      "email": "info@alphalemon.com"
+    }
+  ],
+  "require": {
+    "symfony/symfony":  ">=2.0.10,<2.1.0-dev"
+  },
+  "autoload": {
+    "psr-0": { "AlphaLemon\\FrontendBundle": ""
+    }
+  }
+}
