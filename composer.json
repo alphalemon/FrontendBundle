@@ -12,7 +12,7 @@
     }
   ],
   "require": {
-    "symfony/symfony":  ">=2.0.10,<2.1.0-dev"
+    "symfony/symfony":  ">=2.0.10,<dev-master"
   },
   "autoload": {
     "psr-0": { "AlphaLemon\\FrontendBundle": ""
