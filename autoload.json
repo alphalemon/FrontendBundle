@@ -1,0 +1,7 @@
+{
+    "bundles" : {
+        "AlphaLemon\\FrontendBundle\\AlphaLemonFrontendBundle" : {
+            "environments" : "all"
+        }
+    }
+}
