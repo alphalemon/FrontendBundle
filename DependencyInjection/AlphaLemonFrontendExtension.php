@@ -30,11 +30,11 @@ class AlphaLemonFrontendExtension extends Extension
   {
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('frontend.xml');
-
+        
         $processor = new Processor();
         $configuration = new Configuration();
         $config = $processor->processConfiguration($configuration, $configs);
-
+        
         $container->setParameter('al.deploy_bundle', $config['deploy_bundle']);
   }
 

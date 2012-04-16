@@ -1,0 +1,2 @@
+alpha_lemon_frontend:
+    deploy_bundle: AcmeWebSiteBundle

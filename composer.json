@@ -4,7 +4,7 @@
   "keywords": ["alphalemoncms", "cms"],
   "homepage": "http://alphalemon.com",
   "type": "symfony-bundle",
-  "license": "GPL 2.0",
+  "license": "GPLv2",
   "authors": [
     {
       "name": "AlphaLemon",
