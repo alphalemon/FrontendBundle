@@ -8,15 +8,9 @@
         <parameter key="al.deploy_bundle_media_folder">media</parameter>
         <parameter key="al.deploy_bundle_js_folder">js</parameter>
         <parameter key="al.deploy_bundle_css_folder">css</parameter>
-
-        <parameter key="al_frontend_request_listener.class">AlphaLemon\FrontendBundle\Core\Listener\AlFrontendRequestListener</parameter>
     </parameters>
 
     <services>
-        <service id="al_frontend_request_listener.class" class="%al_frontend_request_listener.class%">
-            <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest" priority="-512" />
-            <argument type="service" id="service_container" />
-        </service>
         <service id="alphalemon.cms.security.provider" class="AlphaLemon\AlphaLemonCmsBundle\Core\Security\Provider\AlCmsAlUserProvider" />
     </services>
 </container>

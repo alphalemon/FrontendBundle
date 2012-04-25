@@ -45,14 +45,9 @@ abstract class FrontendController extends Controller
         if($pageTree != null)
         {
             $request = $this->container->get('request');
-            
-            if(null === $pageTree->getThemeName() || null === $pageTree->getTemplateName())
-            {
-                throw new RuntimeException('Something went wrong during the loading of the requested page. This is usually due to a routing misconfiguration: check the route for the requested page');
-            }
-            
             $dispatcher = $this->container->get('event_dispatcher');
             
+            // Dispatches the pre rendering events for current language and page
             $event = new BeforePageRenderingEvent($this->container->get('request'), $pageTree);
             $dispatcher->dispatch(PageRendererEvents::BEFORE_RENDER_PAGE, $event);  
             $pageTree = $event->getPageTree();
@@ -65,26 +60,9 @@ abstract class FrontendController extends Controller
             $dispatcher->dispatch($eventName, $event);
             $pageTree = $event->getPageTree();
             
-            $template = sprintf('%s:Theme:%s.html.twig', $pageTree->getThemeName(), $pageTree->getTemplateName());
-            
-            $request = $this->container->get('request');
-            $stylesheetsFileName = \sprintf('%s_%s_stylesheets.html.twig', $request->attributes->get('_locale'), $request->get('page'));
-            if(!\file_exists(\sprintf('%sResources/views/Assets/%s', AlToolkit::locateResource($this->container, '@' . $this->container->getParameter('al.deploy_bundle')), $stylesheetsFileName))) $stylesheetsFileName = sprintf('%s_stylesheets.html.twig', $pageTree->getTemplateName());
-            $stylesheetsTemplate = \sprintf('%s:Assets:%s', $this->container->getParameter('al.deploy_bundle'), $stylesheetsFileName);
-
-            $javascriptsFileName = \sprintf('%s_%s_javascripts.html.twig', $request->attributes->get('_locale'), $request->get('page'));
-            if(!\file_exists(\sprintf('%sResources/views/Assets/%s', AlToolkit::locateResource($this->container, '@' . $this->container->getParameter('al.deploy_bundle')), $javascriptsFileName))) $javascriptsFileName = sprintf('%s_javascripts.html.twig', $pageTree->getTemplateName());
-            $javascriptsTemplate = \sprintf('%s:Assets:%s', $this->container->getParameter('al.deploy_bundle'), $javascriptsFileName);
-            
-            return $this->render($template, array('metatitle' => $pageTree->getMetatitle(),
-                                                  'metadescription' => $pageTree->getMetaDescription(),
-                                                  'metakeywords' => $pageTree->getMetaKeywords(),
-                                                  'javascripts_template' => $javascriptsTemplate,
-                                                  'stylesheets_template' => $stylesheetsTemplate,
-                                                  'internal_stylesheets' => $pageTree->getInternalStylesheet(),
-                                                  'internal_javascripts' => $pageTree->getInternalJavascript(),
-                                                  'base_template' => $this->container->getParameter('althemes.base_template'),
-                                                  'values' => $pageTree->getContents()));
+            // Renders the template
+            $template = sprintf('%s:AlphaLemon:%s/%s.html.twig', $this->container->getParameter('al.deploy_bundle'), $request->attributes->get('_locale'), $request->get('page'));
+            return $this->render($template, array('base_template' => $this->container->getParameter('althemes.base_template'), 'slots' => $pageTree->getContents()));            
         }
         else
         {
