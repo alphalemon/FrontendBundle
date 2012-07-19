@@ -27,5 +27,6 @@
       "psr-0": { "AlphaLemon\\FrontendBundle": ""
     }
   },
+  "minimum-stability": "dev",
   "target-dir" : "AlphaLemon/FrontendBundle"
 }
