@@ -35,7 +35,7 @@ class AlphaLemonFrontendExtension extends Extension
         $configuration = new Configuration();
         $config = $processor->processConfiguration($configuration, $configs);
         
-        $container->setParameter('al.deploy_bundle', $config['deploy_bundle']);
+        $container->setParameter('alphalemon_frontend.deploy_bundle', $config['deploy_bundle']);
   }
 
   public function getAlias()

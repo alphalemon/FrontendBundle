@@ -24,7 +24,7 @@ use AlphaLemon\FrontendBundle\DependencyInjection\Compiler\RegisterFrontendListe
 /**
  * AlphaLemonFrontendBundle
  *
- * @author AlphaLemon <info@alphalemon.com>
+ * @author alphalemon <webmaster@alphalemon.com>
  */
 class AlphaLemonFrontendBundle extends Bundle
 {

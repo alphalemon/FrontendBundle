@@ -3,13 +3,6 @@
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <parameters>
-        <parameter key="al.deploy_bundle_assets_base_dir">Resources/public</parameter>
-        <parameter key="al.deploy_bundle_media_folder">media</parameter>
-        <parameter key="al.deploy_bundle_js_folder">js</parameter>
-        <parameter key="al.deploy_bundle_css_folder">css</parameter>
-    </parameters>
-
     <services>
         <service id="alphalemon.cms.security.provider" class="AlphaLemon\AlphaLemonCmsBundle\Core\Security\Provider\AlCmsAlUserProvider" />
     </services>

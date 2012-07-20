@@ -10,9 +10,9 @@
  * file that was distributed with this source code.
  *
  * For extra documentation and help please visit http://www.alphalemon.com
- * 
+ *
  * @license    GPL LICENSE Version 2.0
- * 
+ *
  */
 
 namespace AlphaLemon\FrontendBundle\Controller;
@@ -30,7 +30,7 @@ use Symfony\Component\Serializer\Exception\RuntimeException;
 /**
  * Defines the base controller application should inherit from
  *
- * @author AlphaLemon <info@alphalemon.com>
+ * @author alphalemon <webmaster@alphalemon.com>
  */
 abstract class FrontendController extends Controller
 {
@@ -46,23 +46,23 @@ abstract class FrontendController extends Controller
         {
             $request = $this->container->get('request');
             $dispatcher = $this->container->get('event_dispatcher');
-            
+
             // Dispatches the pre rendering events for current language and page
             $event = new BeforePageRenderingEvent($this->container->get('request'), $pageTree);
-            $dispatcher->dispatch(PageRendererEvents::BEFORE_RENDER_PAGE, $event);  
+            $dispatcher->dispatch(PageRendererEvents::BEFORE_RENDER_PAGE, $event);
             $pageTree = $event->getPageTree();
-            
-            $eventName = sprintf('page_renderer.before_%s_rendering', $request->attributes->get('_locale'));             
+
+            $eventName = sprintf('page_renderer.before_%s_rendering', $request->attributes->get('_locale'));
             $dispatcher->dispatch($eventName, $event);
             $pageTree = $event->getPageTree();
-            
-            $eventName = sprintf('page_renderer.before_%s_rendering', $request->get('page'));             
+
+            $eventName = sprintf('page_renderer.before_%s_rendering', $request->get('page'));
             $dispatcher->dispatch($eventName, $event);
             $pageTree = $event->getPageTree();
-            
+
             // Renders the template
-            $template = sprintf('%s:AlphaLemon:%s/%s.html.twig', $this->container->getParameter('al.deploy_bundle'), $request->attributes->get('_locale'), $request->get('page'));
-            return $this->render($template, array('base_template' => $this->container->getParameter('althemes.base_template'), 'slots' => $pageTree->getContents()));            
+            $template = sprintf('%s:AlphaLemon:%s/%s.html.twig', $this->container->getParameter('alphalemon_frontend.deploy_bundle'), $request->attributes->get('_locale'), $request->get('page'));
+            return $this->render($template, array('base_template' => $this->container->getParameter('althemes.base_template'), 'slots' => $pageTree->getContents()));
         }
         else
         {
@@ -70,7 +70,7 @@ abstract class FrontendController extends Controller
             $response->setContent("CUSTOM ERROR PAGE");
             return $response;
 
-            return $this->render('AlphaLemonPageTreeBundle:Error:ajax_error.html.twig', array('message' => $e->getMessage()), $response);
+            return $this->render('AlphaLemonPageTreeBundle:Dialog:dialog.html.twig', array('message' => $e->getMessage()), $response);
         }
     }
 }
