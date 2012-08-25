@@ -10,9 +10,9 @@
  * file that was distributed with this source code.
  *
  * For extra documentation and help please visit http://www.alphalemon.com
- * 
+ *
  * @license    GPL LICENSE Version 2.0
- * 
+ *
  */
 
 namespace AlphaLemon\FrontendBundle;
@@ -30,6 +30,9 @@ class AlphaLemonFrontendBundle extends Bundle
 {
     public function build(ContainerBuilder $container)
     {
+
+        throw new \RuntimeException("This bundle has been deprecated and moved to ThemeEngineBundle. Please use that bundle instead of this one")
+
         parent::build($container);
 
         $container->addCompilerPass(new RegisterFrontendListenersPass());
